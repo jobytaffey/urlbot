@@ -33,7 +33,7 @@ bot.addListener('message', function (from, to, message) {
                 });
 
                 response.on('data', function (chunk) {
-                    var str=chunk.toString();
+                    var str = chunk.toString();
                     var match = re.exec(str);
                     if (match !== null && match.length >= 3 && match[2] !== undefined) {
                         title = match[2];
