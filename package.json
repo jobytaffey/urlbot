@@ -5,7 +5,7 @@
   "main": "bot.js",
   "repository": {
     "type": "git",
-    "url": "github.com:/jobytaffey/bot.git"
+    "url": "https://github.com/jobytaffey/urlbot.git"
   },
   "author": "Toby Jaffey <toby-bot@hodgepig.org>",
   "dependencies": {
