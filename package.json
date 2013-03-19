@@ -1,5 +1,5 @@
 {
-  "name": "bot",
+  "name": "urlbot",
   "version": "0.0.1",
   "description": "URL shortening IRC bot",
   "main": "bot.js",

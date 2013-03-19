@@ -1,5 +1,5 @@
-Bot
-===
+URLBot
+======
 
 A URL shortening IRC bot.
 
