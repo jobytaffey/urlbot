@@ -3,6 +3,7 @@
 var irc = require('irc');
 var shorturl = require('shorturl');
 var config = require('./config');
+var last = {};
 
 console.log('Connecting to '+config.server+':'+config.options.port);
 
@@ -12,6 +13,13 @@ bot.addListener('message', function (from, to, message) {
     console.log('%s => %s: %s', from, to, message);
     if (to.match(/^[#&]/)) {
         // channel message
+        var nick;
+        if (nick = message.match(/^last (.*)/)) {
+            var l = last[to+nick[1]];
+            if (l !== undefined)
+                bot.say(to, l.msg + ' ['+l.date+']');
+        }
+        else
         if (message.match(/http/)) {
             var re = /(<\s*title[^>]*>(.+?)<\s*\/\s*title)>/gi;
             var title = null;
@@ -44,6 +52,7 @@ bot.addListener('message', function (from, to, message) {
             });
         }
     }
+    last[to+from] = {date:new Date(), msg:message};
 });
 
 bot.addListener('error', function(message) {
