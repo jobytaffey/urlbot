@@ -14,6 +14,12 @@ user: https://github.com/jobytaffey/urlbot
 urlbot: http://is.gd/rQsrNY [jobytaffey/urlbot · GitHub]
 ```
 
+Other features:
+
+ - `last` to display the last thing said by a user
+ - stdin on command line sent all channels
+
+
 Toby Jaffey, <toby-bot@hodgepig.org>
 
 To install

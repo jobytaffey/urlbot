@@ -9,6 +9,16 @@ console.log('Connecting to '+config.server+':'+config.options.port);
 
 var bot = new irc.Client(config.server, config.nick, config.options);
 
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+ 
+process.stdin.on('data', function (chunk) {
+    for (var i=0;i<config.options.channels.length;i++) {
+        bot.say(config.options.channels[i], chunk);
+    }
+});
+
+
 bot.addListener('message', function (from, to, message) {
     console.log('%s => %s: %s', from, to, message);
     if (to.match(/^[#&]/)) {
@@ -70,3 +80,5 @@ bot.addListener('part', function(channel, who, reason) {
 bot.addListener('kick', function(channel, who, by, reason) {
     console.log('%s was kicked from %s by %s: %s', who, channel, by, reason);
 });
+
+
