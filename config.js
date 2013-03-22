@@ -15,3 +15,5 @@ exports.options = {
 */
 };
 
+exports.wolfram = "[CENSORED]"; // get a key at https://developer.wolframalpha.com/portal/signin.html
+

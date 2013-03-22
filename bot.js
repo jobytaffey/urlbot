@@ -7,6 +7,9 @@ var last = {};
 
 console.log('Connecting to '+config.server+':'+config.options.port);
 
+var wolfram = require('wolfram').createClient(config.wolfram)
+
+
 var bot = new irc.Client(config.server, config.nick, config.options);
 
 process.stdin.resume();
@@ -28,6 +31,22 @@ bot.addListener('message', function (from, to, message) {
             var l = last[to+nick[1]];
             if (l !== undefined)
                 bot.say(to, l.msg + ' ['+l.date+']');
+        }
+        else
+        if (message.match(/bot /)) {
+            var re = /bot (.*)/;
+            var match = re.exec(message);
+            if (match !== null && match.length >= 1) {
+                wolfram.query(match[1], function(err, result) {
+                    var str = "";
+                    for (var i=0;i<result.length && i<5;i++) {
+                        for (var j=0;j<result[i].subpods.length && j<5;j++)
+                            str += result[i].subpods[j].value + " ";
+                    }
+                    console.log(str);
+                    bot.say(to, str);
+                });
+            }
         }
         else
         if (message.match(/http/)) {

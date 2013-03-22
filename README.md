@@ -18,6 +18,7 @@ Other features:
 
  - `last` to display the last thing said by a user
  - stdin on command line sent all channels
+ - `bot <question>` queries Wolfram Alpha
 
 
 Toby Jaffey, <toby-bot@hodgepig.org>
